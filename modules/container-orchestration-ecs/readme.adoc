@@ -180,7 +180,7 @@ sed -i "s/<YourAccountID>/${ACCOUNT_ID}/" petstore-fargate-task-definition.json
 +
 [source,shell]
 ----
-aws ecs register-task-definition --cli-input-json file://~/environment/aws-modernization-workshop/modules/container-orchestration/petstore-fargate-task-definition.json
+aws ecs register-task-definition --cli-input-json file://~/environment/aws-modernization-workshop/modules/container-orchestration-ecs/petstore-fargate-task-definition.json
 ----
 
 ===== Create the Petstore Service with Amazon ECS using Fargate

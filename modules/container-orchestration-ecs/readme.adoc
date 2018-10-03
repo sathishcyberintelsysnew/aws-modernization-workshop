@@ -17,9 +17,7 @@
 
 === Introduction
 
-In this module, we're going to deploy applications using http://aws.amazon.com/ecs/[Amazon Elastic Container Service (Amazon ECS)] to
-orchestrate our containers on top of http://aws.amazon.com/fargate/[AWS Fargate] using
-http://aws.amazon.com/cloud9/[AWS Cloud9] to drive our development and deployment.
+In this module, we're going to deploy applications using http://aws.amazon.com/ecs/[Amazon Elastic Container Service (Amazon ECS)] to orchestrate our containers on top of http://aws.amazon.com/fargate/[AWS Fargate].
 
 ==== Getting Started with Amazon ECS using AWS Fargate
 
@@ -34,23 +32,20 @@ Before we get started, here are some definitions you need to understand in order
 | Service | Maintains a specified number of running simultaneous instances of a task definition in an ECS cluster.
 |=======================
 
-You'll deploy a service via Amazon ECS using AWS Fargate as the launch type. The Fargate launch type allows you to run your containerized applications
-without the need to provision and manage the backend infrastructure. Amazon ECS also can launch tasks and services using the EC2 launch type which runs containerized
-applications on Amazon EC2 instances that you manage. Amazon ECS is the orchestration service responsible for running docker containers and AWS Fargate is the underlying
-compute platform where the containers will run.
+You'll deploy a service via Amazon ECS using AWS Fargate as the launch type. The Fargate launch type allows you to run your containerized applications without the need to provision and manage the back-end infrastructure. Amazon ECS also can launch tasks and services using the EC2 launch type which runs containerized applications on Amazon EC2 instances that you manage. Amazon ECS is the orchestration service responsible for running docker containers and AWS Fargate is the underlying compute platform where the containers will run.
 
 ===== Deploy our VPC 
 
 We will first deploy our CloudFormation template which configures our ECS VPC.
 
-1. Switch to the tab where you have your Cloud9 environment opened and change to this modules directory by running:
+Step 1:: Change to this modules directory by running:
 +
 [source,shell]
 ----
 cd ~/environment/aws-modernization-workshop/modules/container-orchestration-ecs
 ----
 +
-2. Deploy the CloudFormation template
+Step 2:: Deploy the CloudFormation template to create your new VPC
 +
 [source,shell]
 ----
@@ -60,7 +55,7 @@ aws cloudformation create-stack \
   --capabilities CAPABILITY_NAMED_IAM
 ----
 +
-3. Wait for the Template to finish deploying
+Step 3:: Wait for the Template to finish deploying
 +
 [source,shell]
 ----
@@ -72,9 +67,7 @@ until [[ `aws cloudformation describe-stacks --stack-name "petstore" --query "St
 https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definitions.html[Amazon ECS Task definitions] are required to run Docker containers in Amazon ECS.
 For our pestore application, we will review the key pieces of a task definition before we deploy it.
 
-Step 1:: Switch to the tab where you have your Cloud9 environment opened.
-+
-Step 2:: Open the *petstore-fargate-task-definition.json* file by double clicking the filename in the left hand navigation in Cloud9.
+Step 1:: Open the *petstore-fargate-task-definition.json* file in your favorite text editor.
 +
 The file has the following content:
 +
@@ -167,7 +160,7 @@ The file has the following content:
 }
 ....
 +
-Step 4:: We need to replace the placeholder for your account id in the template file, so that is aware of your account. The below shell script does that for you automatically using the `sed` and `aws` cli tools.
+Step 2:: We need to replace the placeholder for your account id in the template file, so that is aware of your account. The below shell script does that for you automatically using the `sed` and `aws` cli tools.
 +
 [source,shell]
 ----

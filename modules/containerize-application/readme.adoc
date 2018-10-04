@@ -30,11 +30,11 @@ cd ~/environment/aws-modernization-workshop/modules/containerize-application/
 
 ==== Reviewing the Dockerfile
 The first `stage` of our `Dockerfile` will be to build the application. We will use the `maven:3.5-jdk-7` container from Docker Hub as our base image. The first `stage` of our `Dockerfile` will need to copy the code into the container, install the dependencies, then build the application using Maven.
-+
+
 The second `stage` of our `Dockerfile` will be to build our Wildfly application server. We will need to copy the WAR file we created in the first stage to the second stage. The WAR file is built to `/usr/src/app/target/applicationPetstore.war` in the first stage. We will instruct `docker` to copy that WAR file to the `/opt/jboss/wildfly/standalone/deployments/applicationPetstore.war` in the new `stage`. We will also have `docker` copy the `standalone.xml` file to the proper location `/opt/jboss/wildfly/standalone/configuration/standalone.xml`. Wildfly will deploy that application on boot. 
-+
+
 The jPetstore application requires the PostrgeSQL driver. We install that during image build by declaring a `RUN` statement in the `Dockerfile` like the one below.
-+
+
 [.output]
 ....
 # install postgresql support

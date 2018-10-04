@@ -7,13 +7,13 @@ WORKDIR /usr/src/app
 COPY ./app/pom.xml /usr/src/app/pom.xml
 
 # just install the dependencies for caching
-RUN mvn dependency:go-offline
+RUN mvn -T 4C -T 4 dependency:go-offline
 
 # copy the application code
 COPY ./app /usr/src/app
 
 # package the application
-RUN mvn package -Dmaven.test.skip=true
+RUN mvn package -T 4C -T 2 -Dmaven.test.skip=true
 
 # create our Wildfly based application server
 FROM jboss/wildfly:11.0.0.Final AS application

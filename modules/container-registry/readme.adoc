@@ -13,22 +13,18 @@
 
 === Introduction
 
-In this module, we're going to take our already containerized applications and
-push them to link:https://aws.amazon.com/ecr/[Amazon Elastic Container 
-Registry (ECR)].
+In this module, we're going to take our already containerized applications and push them to link:https://aws.amazon.com/ecr/[Amazon Elastic Container Registry (ECR)].
 
 ==== Deploy ECR Repositories
 We will first deploy our CloudFormation template which configures our ECR Repositories
 
-1. Switch to the tab where you have your Cloud9 environment opened and change to this modules directory by running:
-+
+Step 1:: Change to this modules directory by running:
 [source,shell]
 ----
 cd ~/environment/aws-modernization-workshop/modules/container-registry
 ----
-+
-2. Deploy the CloudFormation template
-+
+
+Step 2:: Deploy the CloudFormation template using the `aws cli` tool. 
 [source,shell]
 ----
 aws cloudformation create-stack \
@@ -36,9 +32,9 @@ aws cloudformation create-stack \
   --template-body file://petstore-ecr-cf-resources.yaml \
   --capabilities CAPABILITY_NAMED_IAM
 ----
-+
-3. Wait for the Template to finish deploying
-+
+
+Step 3:: Wait for the Template to finish deploying
+
 [source,shell]
 ----
 until [[ `aws cloudformation describe-stacks --stack-name "petstore-ecr" --query "Stacks[0].[StackStatus]" --output text` == "CREATE_COMPLETE" ]]; do  echo "The stack is NOT in a state of CREATE_COMPLETE at `date`";   sleep 30; done && echo "The Stack is built at `date` - Please proceed"
@@ -46,25 +42,24 @@ until [[ `aws cloudformation describe-stacks --stack-name "petstore-ecr" --query
 
 ===== Pushing the Petstore images to Amazon Elastic Container Registry (ECR)
 
-Before we can deploy our Petstore application to an orchestrator, we need to push our Petstore images to https://aws.amazon.com/ecr/[Amazon Elastic Container Registry (ECR)].
-Amazon Elastic Container Registry (ECR) is a fully-managed Docker container registry that makes it easy for developers to store, manage, and deploy Docker container images.
-Amazon ECR is integrated with Amazon Elastic Container Service (ECS), simplifying your development to production workflow.
+Before we can deploy our Petstore application to an orchestrator, we need to push our Petstore images to https://aws.amazon.com/ecr/[Amazon Elastic Container Registry (ECR)]. 
 
-1. Log into your Amazon ECR registry using the helper provided by the AWS CLI in the Cloud9 terminal:
-+
+Amazon Elastic Container Registry (ECR) is a fully-managed Docker container registry that makes it easy for developers to store, manage, and deploy Docker container images. Amazon ECR is integrated with Amazon Elastic Container Service (ECS), simplifying your development to production workflow.
+
+Step 1:: Log into your Amazon ECR registry using the helper provided by the AWS CLI.
+
 [source,shell]
 ----
 eval $(aws ecr get-login --no-include-email)
 ----
-+
-2. Use the AWS CLI to get information about the two Amazon ECR repositories that were created for you ahead of time. One repository will be for the Petstore PostgreSQL backend
-and the other will be for the Petstore web frontend.
-+
+
+Step 2:: Use the AWS CLI to get information about the two Amazon ECR repositories that were created for you ahead of time. One repository will be for the Petstore PostgreSQL backend and the other will be for the Petstore web frontend.
+
 [source,shell]
 ----
-aws ecr describe-repositories --repository-name petstore_postgres
+aws ecr describe-repositories --repository-name petstore_postgres petstore_frontend
 ----
-+
+
 [.output]
 ....
 {
@@ -75,20 +70,7 @@ aws ecr describe-repositories --repository-name petstore_postgres
             "repositoryArn": "arn:aws:ecr:us-west-2:123456789012:repository/petstore_postgres",
             "createdAt": 1533757748.0,
             "repositoryUri": "123456789012.dkr.ecr.us-west-2.amazonaws.com/petstore_postgres"
-        }
-    ]
-}
-....
-+
-[source,shell]
-----
-aws ecr describe-repositories --repository-name petstore_frontend
-----
-+
-[.output]
-....
-{
-    "repositories": [
+        },
         {
             "registryId": "123456789012",
             "repositoryName": "petstore_frontend",
@@ -99,16 +81,14 @@ aws ecr describe-repositories --repository-name petstore_frontend
     ]
 }
 ....
-+
-Note the contents of the repositoryUri for each repostiory.
-+
-3. Verify that your Docker images exist by running the docker images command.
-+
+
+Step 3:: Verify that your Docker images exist by running the docker images command.
+
 [source,shell]
 ----
 docker images
 ----
-+
+
 [.output]
 ....
 REPOSITORY                          TAG                 IMAGE ID            CREATED             SIZE
@@ -122,30 +102,24 @@ lambci/lambda                       python3.6           acf16b1d5297        6 we
 lambci/lambda                       nodejs6.10          da301bf4fe34        6 weeks ago         1.02GB
 jboss/wildfly                       11.0.0.Final        6926d48f2e5b        4 months ago        617MB
 ....
-+
-4. Tag the postgres image so you can push the image to the ECR repository. Note: You need to replace the value
-from the repositoryURI for petstore_postgres previously.
-+
+
+Step 4:: Tag the local docker images with the locations of the remote ECR repositories we created using our `CloudFormation` template. 
+
 [source,shell]
 ----
 docker tag postgres:9.6 $(aws ecr describe-repositories --repository-name petstore_postgres --query=repositories[0].repositoryUri --output=text):latest
+docker tag containerize-application_petstore:latest $(aws ecr describe-repositories --repository-name petstore_frontend --query=repositories[0].repositoryUri --output=text):latest
 ----
-+
-5. Run the following command to push this image to the ECR repository. Note: You need to replace the value with
-the tag you applied in the previous step.
-+
+
+Step 5:: Once the images have been tagged, push them to the remote repository.
+
 [source,shell]
 ----
 docker push $(aws ecr describe-repositories --repository-name petstore_postgres --query=repositories[0].repositoryUri --output=text):latest
+docker push $(aws ecr describe-repositories --repository-name petstore_frontend --query=repositories[0].repositoryUri --output=text):latest
 ----
-+
-You should see the Docker image being pushed:
-+
-[source,shell]
-----
-docker push 123456789012.dkr.ecr.us-west-2.amazonaws.com/petstore_postgres:latest
-----
-+
+
+You should see the Docker images being pushed with an output similar to this:
 [.output]
 ....
 The push refers to repository [123456789012.dkr.ecr.us-west-2.amazonaws.com/petstore_postgres]
@@ -165,44 +139,5 @@ add4404d0b51: Layer already exists
 cdb3f9544e4c: Layer already exists
 latest: digest: sha256:ca39b6107978303706aac0f53120879afcd0d4b040ead7f19e8581b81c19ecea size: 3243
 ....
-+
-6. Now you need to do the same thing with the petstore frontend. Tag the containerize-application_petstore image so you can push the image
-to the ECR repository. Note: You need to replace the value from the repositoryURI for petstore_frontend previously.
-+
-[source,shell]
-----
-docker tag containerize-application_petstore:latest $(aws ecr describe-repositories --repository-name petstore_frontend --query=repositories[0].repositoryUri --output=text):latest
-----
-+
-7. Run the following command to push this image to the ECR repository. Note: You need to replace the value with
-the tag you applied in the previous step.
-+
-[source,shell]
-----
-docker push $(aws ecr describe-repositories --repository-name petstore_frontend --query=repositories[0].repositoryUri --output=text):latest
-----
-+
-You should see the Docker image being pushed:
-+
-[source,shell]
-----
-docker push 123456789012.dkr.ecr.us-west-2.amazonaws.com/petstore_frontend:latest
-----
-+
-[.output]
-....
-The push refers to repository [123456789012.dkr.ecr.us-west-2.amazonaws.com/petstore_frontend]
-d09698a5c7b9: Pushed
-8acb26508304: Pushed
-9743103e1954: Pushed
-cfbd33e75dbe: Pushed
-bdc2cd9ee81f: Pushed
-68f2b534f819: Layer already exists
-25392e8f9f5a: Layer already exists
-0c8237d7452a: Layer already exists
-d9e554ca876f: Layer already exists
-43e653f84b79: Layer already exists
-latest: digest: sha256:1752fbb6c9d826148ef790c5ac4f99fcc2b48a5744543ba4c58a7edf3f7d625e size: 2417
-....
 
-With the images pushed to Amazon ECR we are ready to deploy them to our ochestrators.
+With the images pushed to Amazon ECR we are ready to deploy them to our orchestrator.

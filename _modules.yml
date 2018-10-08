@@ -19,5 +19,7 @@ modules:
     name: Security Practices
   modules_container-elasticity_readme:
     name: Container Elasticity
+  modules_security_readme:
+    name: Security  
   modules_feedback_readme:
     name: Feedback

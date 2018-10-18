@@ -447,7 +447,7 @@ map[cluster-autoscaler.kubernetes.io/scale-down-disabled:true node.alpha.kuberne
 +
 [source,shell]
 ----
-kubectl scale deploy/frontend --namespace --replicas=2
+kubectl scale deploy/frontend --namespace petstore --replicas=2
 ----
 +
 [.output]

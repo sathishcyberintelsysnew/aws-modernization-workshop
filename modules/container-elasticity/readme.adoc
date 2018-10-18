@@ -395,7 +395,7 @@ and not enough availabe it will provision new nodes for you. Let's try this.
 +
 [source,shell]
 ----
-kubectl scale deploy/frontend --namespace --replicas=10
+kubectl scale deploy/frontend --namespace petstore --replicas=10
 ----
 +
 [.output]

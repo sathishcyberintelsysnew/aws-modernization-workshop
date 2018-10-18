@@ -19,5 +19,4 @@ modules:
   - "modules_monitor-application_readme"
   - "modules_cicd_readme"
   - "modules_container-elasticity_readme"
-  - "modules_security_readme"
   - "modules_feedback_readme"

@@ -55,7 +55,7 @@ Let's now review the full `Dockerfile` step for step and walk through the result
 FROM maven:3.5-jdk-7 AS build
 ....
 
-Next we are going to install the dependencies. We do this ahead of time so that we can leverage the Docker build cache to increase the speed of build times. To accomplish this we copy the pom.xml and install the dependencies. We then copy our application code and build the applicaiton. This enables developers to iterate on their code without having to install dependencies each time.
+Next we are going to install the dependencies. We do this ahead of time so that we can leverage the Docker build cache to increase the speed of build times. To accomplish this we copy the pom.xml and install the dependencies. We then copy our application code and build the application. This enables developers to iterate on their code without having to install dependencies each time.
 
 [.output]
 ....

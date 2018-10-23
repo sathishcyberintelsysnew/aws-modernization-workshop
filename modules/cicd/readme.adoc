@@ -117,7 +117,7 @@ Step 1:: When your Cloud9 environment was provisioned, it should also have autom
 
 [source,shell]
 ----
-cd aws-modernization-workshop/
+cd ~/environment/aws-modernization-workshop/aws-modernization-workshop/
 ----
 
 Step 2:: Before we are able to clone our CodeCommit repo, we will need to configure our credentials allow HTTP:

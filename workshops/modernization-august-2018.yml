@@ -18,6 +18,5 @@ modules:
   - "modules_container-orchestration-eks_readme"
   - "modules_monitor-application_readme"
   - "modules_cicd_readme"
-  - "modules_security_readme"
   - "modules_container-elasticity_readme"
   - "modules_feedback_readme"

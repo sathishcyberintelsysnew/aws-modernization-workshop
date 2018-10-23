@@ -81,12 +81,12 @@ Once our new Docker image has successfully been built and stored in ECR, we tran
 
 Steps to Create the Pipeline
 
-Step 1:: From your Cloud9 IDE, launch the CloudFormation template:
+Step 1:: From your Cloud9 IDE, let's launch the CloudFormation template:
 
 [source,shell]
 ----
 aws cloudformation create-stack \
-  --stack-name cicd --template-body=file://modules/cicd/pipeline.yaml \
+  --stack-name cicd --template-body=file://~/environment/aws-modernization-workshop/modules/cicd/pipeline.yaml \
   --capabilities CAPABILITY_IAM
 ----
 

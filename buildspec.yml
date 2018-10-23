@@ -25,7 +25,6 @@ phases:
       - echo Writing image definitions file...
       - echo Source DIR ${CODEBUILD_SRC_DIR}
       - printf '[{"name":"petstore","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > ${CODEBUILD_SRC_DIR}/imagedefinitions.json
-  artifact:
-    files:
-    - '*/imagedefinitions.json'
-    base-directory: ${CODEBUILD_SRC_DIR}
+artifacts:
+  files:
+  - 'imagedefinitions.json'

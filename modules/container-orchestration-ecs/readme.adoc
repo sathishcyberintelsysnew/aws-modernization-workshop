@@ -169,7 +169,7 @@ echo ${ACCOUNT_ID}
 sed -i "s/<YourAccountID>/${ACCOUNT_ID}/" ~/environment/aws-modernization-workshop/modules/container-orchestration-ecs/petstore-fargate-task-definition.json
 ----
 +
-Step 5:: Create a new task definition from the JSON file by running this command
+Step 3:: Create a new task definition from the JSON file by running this command
 +
 [source,shell]
 ----
@@ -234,6 +234,6 @@ Step 25:: Get the URL for your running application
 printf "http://%s\n" $(aws elbv2 describe-load-balancers --names="petstore-lb" --query="LoadBalancers[0].DNSName" --output=text)
 ----
 +
-Step 27:: Open the URL output above in your Browser.
+Step 26:: Open the URL output above in your Browser.
 
 Now that we have a Fargate cluster, with a Service using our application deployed we can move on with the workshop.

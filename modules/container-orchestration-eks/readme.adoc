@@ -228,7 +228,13 @@ items:
 ----
 +
 5. Replace the *<YourAccountID>* placeholders with your https://docs.aws.amazon.com/IAM/latest/UserGuide/console_account-alias.html[Account ID] and save the file.
-
++
+[source,shell]
+----
+ACCOUNT_ID=$(aws sts get-caller-identity --output text --query 'Account')
+sed -i "s/<YourAccountID>/${ACCOUNT_ID}/" petstore-eks-manifest.yaml
+----
++
 6. Apply your manifest by running this command in your Cloud9 terminal:
 +
 [source,shell]

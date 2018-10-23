@@ -170,15 +170,15 @@ git push -f codecommit master
 
 This should create a branch called `master` in your CodeCommit repo and push the contents of our lab. You should see the following results in your Cloud9 console:
 
-[source,shell]
-----
+[.output]
+....
 Counting objects: 457, done.
 Compressing objects: 100% (283/283), done.
 Writing objects: 100% (457/457), 11.56 MiB | 15.70 MiB/s, done.
 Total 457 (delta 153), reused 457 (delta 153)
 To https://git-codecommit.us-west-2.amazonaws.com/v1/repos/aws_pet_store_repo
  * [new branch]      master -> master
-----
+....
 
 You can also see the same results by navigating to the https://console.aws.amazon.com/codecommit/[CodeCommit console] where you will find results similar to these:
 

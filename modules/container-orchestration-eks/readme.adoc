@@ -290,7 +290,8 @@ postgres-678864b7-vs5zj     0/1       ContainerCreating   5          3m
 ....
 +
 9. Once the *STATUS* changes to *Running* for all 3 of your containers we can
-   then load the services and navigate to the exposed application.
+   then load the services and navigate to the exposed application (you will
+   need to ctrl-c since its watching).
 +
 [source,shell]
 ----

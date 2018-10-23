@@ -310,7 +310,7 @@ deployment.extensions/cluster-autoscaler created
 +
 [source,shell]
 ----
-aws cloudformation describe-stacks --stack-name EKS-petstore-DefaultNodeGroup | jq -r ".Stacks[0].Outputs[0].OutputValue"
+aws cloudformation describe-stacks --stack-name eksctl-petstore-nodegroup-0 | jq -r ".Stacks[0].Outputs[0].OutputValue"
 ----
 +
 [.output]

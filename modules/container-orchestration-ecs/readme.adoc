@@ -34,7 +34,7 @@ Before we get started, here are some definitions you need to understand in order
 
 You'll deploy a service via Amazon ECS using AWS Fargate as the launch type. The Fargate launch type allows you to run your containerized applications without the need to provision and manage the back-end infrastructure. Amazon ECS also can launch tasks and services using the EC2 launch type which runs containerized applications on Amazon EC2 instances that you manage. Amazon ECS is the orchestration service responsible for running docker containers and AWS Fargate is the underlying compute platform where the containers will run.
 
-===== Deploy our VPC 
+===== Deploy our VPC
 
 We will first deploy our CloudFormation template which configures our ECS VPC.
 
@@ -178,7 +178,7 @@ aws ecs register-task-definition --cli-input-json file://~/environment/aws-moder
 
 ===== Create the Petstore Service with Amazon ECS using Fargate
 
-Step 1:: Go to the AWS Management Console, click Services then select *Elastic Container Service* under Compute.
+Step 1:: Go to the AWS Management Console, click Services then select *ECS* under Compute.
 +
 Step 2:: On the left hand navigation ensure *Clusters* is selected and click *Create Cluster*.
 +

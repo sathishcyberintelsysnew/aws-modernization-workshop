@@ -22,7 +22,7 @@ Automation lab must be completed
 This module is designed to introduce scanning **open source dependencies** of the application and the **Docker** container that is created during this workshop. The files required for this module have already been created and reside in the /modules/snyk folder. You will copy these over while following the steps below.
 
 ==== Background
-**Snyk** is a **SaaS** offering that organizations use to **find, fix, prevent and monitor** open source dependencies. Snyk is a `developer first` platform that can be easily integrated into the `Software Development Lifecycle (SDLC)`.
+**Snyk** is a **SaaS** offering that organizations use to **find, fix, prevent and monitor** open source dependencies. Snyk is a developer first platform that can be easily integrated into the Software Development Lifecycle (SDLC).
 
 At this point of the module, the `Petstore` application is created, so we will look to insert **Snyk** as part of an important security gate during the build process.
 
@@ -42,9 +42,9 @@ For the purposes of this module, **Snyk** will be inserted into two key processe
 
 This module has five sections:
 
-1. Obtain a token for testing from `https://Snyk.io/`
+1. Obtain a token for testing from `https://snyk.io/`
 2. Setting up application scanning
-3. Setting up `Docker` analysis
+3. Setting up Docker analysis
 4. Running a test and fixing the issue(s) detected
 5. Viewing the status on the Snyk dashboard
 
@@ -102,7 +102,7 @@ RUN mvn package -Dmaven.test.skip=true
 
 #~~~~~~~SNYK test~~~~~~~~~~~~
 # download, configure and run snyk. Break build if vulns present, post results to `https://snyk.io/`
-RUN curl -kLo ./snyk "https://github.com/snyk/snyk/releases/download/v1.105.1/snyk-linux"
+RUN curl -Lo ./snyk "https://github.com/snyk/snyk/releases/download/v1.210.0/snyk-linux"
 RUN chmod -R +x ./snyk
 #Auth set through environment variable
 RUN ./snyk test --severity-threshold=medium
@@ -127,7 +127,7 @@ phases:
     commands:
 
       - PWDUTILS=$(pwd)
-      - curl -kLo ./snyk "https://github.com/snyk/snyk/releases/download/v1.105.1/snyk-linux"
+      - curl -Lo ./snyk "https://github.com/snyk/snyk/releases/download/v1.210.0/snyk-linux"
       - chmod -R +x ./snyk
 ....
 

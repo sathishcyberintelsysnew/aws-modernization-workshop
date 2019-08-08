@@ -24,7 +24,7 @@ RUN mvn package -T 4C -T 2 -Dmaven.test.skip=true
 
 #~~~~~~~SNYK test~~~~~~~~~~~~
 # download, configure and run snyk. Break build if vulns present, post results to snyk.io
-RUN curl -kLo ./snyk "https://github.com/snyk/snyk/releases/download/v1.105.1/snyk-linux"
+RUN curl -Lo ./snyk "https://github.com/snyk/snyk/releases/download/v1.210.0/snyk-linux"
 RUN chmod -R +x ./snyk
 #Auth set through environment variable
 RUN ./snyk test --severity-threshold=medium

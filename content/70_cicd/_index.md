@@ -1,9 +1,9 @@
 +++
-title = "Snyk"
+title = "Automation"
 chapter = true
 weight = 30
 +++
 
-# Snyk Security Module
+# Automation
 
 {{% children showhidden="false" %}}

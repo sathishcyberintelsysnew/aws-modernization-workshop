@@ -1,8 +1,10 @@
 +++
-title = "Instructions"
+title = "Snyk Security"
 chapter = false
 weight = 1
 +++
+
+## Snyk Security
 
 ### Expected Outcome
 - Install Snyk
@@ -11,7 +13,7 @@ weight = 1
 
 **Lab Requirements:** Automation lab must be completed
 
-**Expected Lab Time:** 30 minutes
+**Average Lab Time:** 30 minutes
 
 ### Introduction
 This module is designed to introduce scanning **open source dependencies** of the application and the **Docker** container that is created during this workshop. The files required for this module have already been created and reside in the /modules/snyk folder. You will copy these over while following the steps below.

@@ -1,0 +1,11 @@
++++
+title = "Feedback"
+chapter = false
+weight = 1
++++
+
+## Feedback
+Thank you so much for taking the AWS Moderization Workshop with us! Please Take
+a minute and add your feedback
+
+[AWS Moderization Workshop Feedback](https://tinyurl.com/awschicagobootcamp)

@@ -12,7 +12,7 @@
   <properties>
     <version.javaee>7.0</version.javaee>
     <version.jboss-javaee>1.1.0.Final</version.jboss-javaee>
-    <version.log4j>2.8.2</version.log4j>
+    <version.log4j>2.13.2</version.log4j>
     <!-- Test -->
     <version.junit>4.12</version.junit>
     <version.arquillian>1.1.15.2</version.arquillian>
@@ -26,9 +26,9 @@
     <!-- App servers -->
     <version.wildfly>11.0.0.Final</version.wildfly>
     <!-- UI (WebJar, Bootstrap, JQuery...) -->
-    <version.bootstrap>3.3.7-1</version.bootstrap>
-    <version.jquery>2.2.4</version.jquery>
-    <version.primefaces>6.1</version.primefaces>
+    <version.bootstrap>4.5.0</version.bootstrap>
+    <version.jquery>3.5.0</version.jquery>
+    <version.primefaces>12.0.0</version.primefaces>
     <version.primefaces-themes>1.0.10</version.primefaces-themes>
     <version.fontawesome>4.7.0</version.fontawesome>
     <!-- Other -->

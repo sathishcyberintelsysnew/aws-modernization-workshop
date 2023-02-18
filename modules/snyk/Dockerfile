@@ -33,7 +33,7 @@ RUN ./snyk monitor
 
 
 # create our Wildfly based application server
-FROM jboss/wildfly:11.0.0.Final AS application
+FROM jboss/wildfly:24.0.0.Final AS application
 
 # install postgresql support
 RUN mkdir -p $JBOSS_HOME/modules/system/layers/base/org/postgresql/main

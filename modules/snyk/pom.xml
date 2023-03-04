@@ -26,7 +26,7 @@
     <!-- App servers -->
     <version.wildfly>11.0.0.Final</version.wildfly>
     <!-- UI (WebJar, Bootstrap, JQuery...) -->
-    <version.bootstrap>4.5.0</version.bootstrap>
+    <version.bootstrap>4.6.2</version.bootstrap>
     <version.jquery>3.5.0</version.jquery>
     <version.primefaces>12.0.0</version.primefaces>
     <version.primefaces-themes>1.0.10</version.primefaces-themes>
